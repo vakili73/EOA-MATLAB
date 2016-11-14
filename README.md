@@ -1,6 +1,6 @@
 # EOA-MATLAB
 
-this code gathering from http://academic.csuohio.edu/simond/EvolutionaryOptimization/
+this code gathered from (or base) http://academic.csuohio.edu/simond/EvolutionaryOptimization/
 
 Evolutionary Optimization Algorithms:
 
