@@ -1,4 +1,4 @@
-function [MinCost] = SA(ProblemFunction, DisplayFlag, GenLimit, RestartCount, alpha, beta, T0)
+function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartCount, alpha, beta, T0)
 
 % Simulated annealing for minimizing a continuous function.
 
@@ -17,6 +17,9 @@ if ~exist('ProblemFunction', 'var') || isempty(ProblemFunction)
 end
 if ~exist('DisplayFlag', 'var') || isempty(DisplayFlag)
     DisplayFlag = true;
+end
+if ~exist('Random', 'var') || isempty(DisplayFlag)
+    Random = 'randn()';
 end
 if ~exist('GenLimit', 'var') || isempty(GenLimit)
     GenLimit = 10000;
@@ -55,9 +58,10 @@ for GenIndex = 1 : OPTIONS.Maxgen
         T = T / (1 + beta * T);
     end
     % Generate a candidate solution
-    Candidate.chrom = Population(1).chrom + sqrt(T) * randn(1, OPTIONS.numVar);
+    Candidate.chrom = Population(1).chrom + sqrt(T) * eval(RandomInterpreter(Random, '1, OPTIONS.numVar'));
+%     Candidate.chrom = Population(1).chrom + sqrt(T) * (Random(1, OPTIONS.numVar) - Random(1, OPTIONS.numVar));
+%     Candidate.chrom = OPTIONS.MinDomain + (OPTIONS.MaxDomain - OPTIONS.MinDomain) .* rand(1,OPTIONS.numVar);
     Candidate.chrom = max( min( Candidate.chrom, OPTIONS.MaxDomain ), OPTIONS.MinDomain );
-    % Candidate.chrom = OPTIONS.MinDomain + (OPTIONS.MaxDomain - OPTIONS.MinDomain) * rand(1,OPTIONS.numVar);
     Candidate = OPTIONS.CostFunction(Candidate, OPTIONS);
     % Decide whether to keep the current solution or replace it with the new candidate solution
     if Candidate.cost < Population(1).cost
@@ -73,7 +77,7 @@ for GenIndex = 1 : OPTIONS.Maxgen
             ConsecFails = 0;
             Population(1) = BestSoFar;
             T = T0;
- %       elseif rand < exp((Population(1).cost - Candidate.cost) / T)
+%        elseif rand < exp((Population(1).cost - Candidate.cost) / T)
         elseif rand < exp(-1 / T)
             Population(1) = Candidate;
         end

@@ -19,6 +19,8 @@ close all;
 [x, y] = meshgrid(xlimits(1) : dx : xlimits(2));
 meshc(x,y,obj);
 zlabel('f(x)')
+xlabel('x:[-3 3]')
+ylabel('y:[-3 3]')
 set(gca, 'XTick', [])
 set(gca, 'YTick', [])
 set(gca, 'ZTick', [])

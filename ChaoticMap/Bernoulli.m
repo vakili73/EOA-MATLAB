@@ -1,44 +1,47 @@
-function [ randB ] = Bernoulli(rows, cols)
-% where a is a control parameter in (0, 1)
-a = 0.5;
-x0 = @rand;
-x0 = feval(x0);
+function [ Rand ] = Bernoulli(rows, cols, OPTIONS)
+% where a is a control parameter in (0, 0.5)
+a = 0.29;
+OPTIONS_.x0 = @rand;
+if  nargin == 3 && ~isempty(OPTIONS) && isstruct(OPTIONS)
+    if isfield(OPTIONS, 'a'); a = OPTIONS.a; end
+    if isfield(OPTIONS, 'x0'); OPTIONS_.x0 = OPTIONS.x0; end
+end
+x0 = feval(OPTIONS_.x0);
 
+%% Bernoulli function
+    function [y] = fcn(x0)
+        if (0 <= x0) && (x0 <= a)
+            y = x0 / (1 - a);
+            return;
+        end
+        if (1-a <= x0) && (x0 <= 1)
+            y = (x0 - (1 - a)) / a;
+            return;
+        end
+        y = fcn(feval(OPTIONS_.x0));
+    end
+
+%% random generation method
 switch nargin
     case 1
-        randB = zeros(rows, rows);
-        for j = 1 : rows
-            for i = 1 : rows
-                if 0 <= x0.x0 <= a
-                    randB(i,j) = x0.x0 / (1 - a);
-                end
-                if 1-a <= x0.x0 <= 1
-                    randB(i,j) = (x0.x0 - (1 - a)) / a;
-                end
-                x0.x0 = feval(x0);
-            end
-        end
+        cols = rows;
+        Rand = RCs(rows, cols);
     case 2
-        randB = zeros(rows, cols);
+        Rand = RCs(rows, cols);
+    case 3
+        Rand = RCs(rows, cols);
+    otherwise
+        Rand = fcn(x0);
+end
+
+    function [ Rands ] = RCs(rows, cols)
+        Rands = zeros(rows, cols);
         for j = 1 : cols
             for i = 1 : rows
-                if 0 <= x0.x0 <= a
-                    randB(i,j) = x0.x0 / (1 - a);
-                end
-                if 1-a <= x0.x0 <= 1
-                    randB(i,j) = (x0.x0 - (1 - a)) / a;
-                end
-                x0.x0 = feval(x0);
+                Rands(i, j) = fcn(x0);
+                x0 = feval(OPTIONS_.x0);
             end
         end
-    otherwise
-        if 0 <= x0.x0 <= a
-            randB = x0.x0 / (1 - a);
-        end
-        if 1-a <= x0.x0 <= 1
-            randB = (x0.x0 - (1 - a)) / a;
-        end
-end
+    end
 
 end
-

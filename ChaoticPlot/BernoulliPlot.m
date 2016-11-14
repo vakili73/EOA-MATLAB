@@ -1,38 +1,33 @@
-function [ randVectorC ] = BernoulliPlot
-% where a is a control parameter in (0, 1)
-OPTIONS.noRandC = 10000;
-x0 = @rand;
-OPTIONS.x0 = feval(x0);
-OPTIONS.a = linspace(0, 1, 100);
+function BernoulliPlot
+% where a is a control parameter in (0, 0.5)
+OPTIONS_.noRand = 10000;
+OPTIONS_.a = linspace(0.001, 0.5, 100);
 
-ia = 1;
-while ia <= length(OPTIONS.a)
-    a = OPTIONS.a(ia);
-    randVectorC = zeros(1, OPTIONS.noRandC);
-    for i = 1 : OPTIONS.noRandC
-        if 0 <= OPTIONS.x0 <= a
-            randVectorC(i) = OPTIONS.x0 / (1 - a);
-        end
-        if 1-a <= OPTIONS.x0 <= 1
-            randVectorC(i) = (OPTIONS.x0 - (1 - a)) / a;
-        end
-        OPTIONS.x0 = feval(x0);
-    end
+OPTIONS = struct();
+OPTIONS.x0 = @rand;
+
+for a = OPTIONS_.a
+    OPTIONS.a = a;
+    randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS);
+%     randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS)-Bernoulli(1, OPTIONS_.noRand, OPTIONS);
+%     randVector = rand(1, OPTIONS_.noRand)-rand(1, OPTIONS_.noRand);
+%     randVector = randn(1, OPTIONS_.noRand);
+    
+    %% ploting
     clf;
     disp(['Constant a: ', num2str(a)]);
     subplot(1, 2, 1);
-    scatter(1 : length(randVectorC), randVectorC, '.');
+    scatter(1 : length(randVector), randVector, '.');
     title('Bernoulli Chaotic Map Function');
     xlabel('Iteration');
     ylabel('Randomly Generated');
     
     subplot(1, 2, 2);
-    histogram(randVectorC, 100);
+    histogram(randVector, 100);
     title('Bernoulli Chaotic Map Function');
     xlabel('100 Bins');
     ylabel('Number Of Example');
-    pause(0.1);
-    ia = ia + 1;
+    pause(0.01);
 end
 
 end
