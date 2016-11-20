@@ -1,7 +1,7 @@
 function BernoulliPlot
 % where a is a control parameter in (0, 0.5)
 OPTIONS_.noRand = 10000;
-OPTIONS_.a = linspace(0.001, 0.5, 100);
+OPTIONS_.a = linspace(0.01, 0.5, 100);
 
 OPTIONS = struct();
 OPTIONS.x0 = @rand;

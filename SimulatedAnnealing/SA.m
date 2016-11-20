@@ -39,7 +39,7 @@ if ~exist('T0', 'var') || isempty(T0)
 end
 
 % Initialization
-OPTIONS.popsize = 1;
+OPTIONS.popsize = 1000;
 OPTIONS.clearDups = false;
 [OPTIONS, MinCost, AvgCost, Population, MinConstrViol, AvgConstrViol] = ...
     Init(DisplayFlag, ProblemFunction, OPTIONS);

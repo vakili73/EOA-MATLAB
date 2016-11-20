@@ -1,7 +1,7 @@
 function ICMICPlot
 % where a is a control parameter
 OPTIONS_.noRand = 10000;
-OPTIONS_.a = linspace(-3, 3, 100);
+OPTIONS_.a = linspace(-1, 1, 100);
 
 OPTIONS = struct();
 OPTIONS.x0 = @randn;

@@ -1,6 +1,6 @@
 function GriewankPlot
 
-xlimits = [-15 15];
+xlimits = [-20 20];
 dx = (xlimits(2) - xlimits(1)) / 100;
 N = floor((xlimits(2) - xlimits(1)) / dx) + 1;
 obj = zeros(N, N);
