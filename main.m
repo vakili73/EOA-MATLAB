@@ -11,20 +11,21 @@ Init__;
 
 % chaotic map functions
 Chaotic = {         % Method of generate random function
-    'rand       '   ,'rand()'               ;
+    'rand       '   ,'rand()-rand()'        ;
     'randn      '   ,'randn()'              ;
-    'Bernoulli  '   ,'Bernoulli()'          ;
+    'Bernoulli  '   ,'Bernoulli()-Bernoulli()'          ;
     'Chebyshev  '   ,'Chebyshev()'          ;
     'Circle     '   ,'Circle()'             ;
-    'Gauss      '   ,'Gauss()'              ;
-    'GaussMap   '   ,'GaussMap()'           ;
-    'ICMIC      '   ,'ICMIC()'              ;
-    'Logistic   '   ,'Logistic()'           ;
-    'Piecewise  '   ,'Piecewise()'          ;
-    'Singer     '   ,'Singer()'             ;
-    'Sinus      '   ,'Sinus()'              ;
-    'Sinusoidal '   ,'Sinusoidal()'         ;
-    'Tent       '   ,'Tent()'               };
+%     'Gauss      '   ,'Gauss()'              ;
+    'GaussMap   '   ,'GaussMap()-GaussMap()'           ;
+%     'ICMIC      '   ,'ICMIC()'              ;
+%     'Logistic   '   ,'Logistic()'           ;
+%     'Piecewise  '   ,'Piecewise()'          ;
+%     'Singer     '   ,'Singer()'             ;
+%     'Sinus      '   ,'Sinus()'              ;
+%     'Sinusoidal '   ,'Sinusoidal()'         ;
+%     'Tent       '   ,'Tent()'               ;
+    'CMFoCSA    '   ,'CMFoCSA()'            };
 nChaotic = size(Chaotic, 1);
 Results = cell(nChaotic, 1);
 parfor i = 1 : nChaotic

@@ -1,7 +1,7 @@
 function [ Rand ] = Circle(rows, cols, OPTIONS)
 % By x0 = 0.5 and b = 0.2, chaotic numbers will be generated in (0,1)
-a = 34.12;
-b = 0.1;
+a = 16.14;
+b = 0.001;
 OPTIONS_.x0 = @rand;
 if  nargin == 3 && ~isempty(OPTIONS) && isstruct(OPTIONS)
     if isfield(OPTIONS, 'a'); a = OPTIONS.a; end

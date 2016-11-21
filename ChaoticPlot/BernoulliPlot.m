@@ -4,12 +4,12 @@ OPTIONS_.noRand = 10000;
 OPTIONS_.a = linspace(0.01, 0.5, 100);
 
 OPTIONS = struct();
-OPTIONS.x0 = @rand;
+% OPTIONS.x0 = @rand;
 
 for a = OPTIONS_.a
-    OPTIONS.a = a;
-    randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS);
-%     randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS)-Bernoulli(1, OPTIONS_.noRand, OPTIONS);
+%     OPTIONS.a = a;
+%     randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS);
+    randVector = Bernoulli(1, OPTIONS_.noRand, OPTIONS)-Bernoulli(1, OPTIONS_.noRand, OPTIONS);
 %     randVector = rand(1, OPTIONS_.noRand)-rand(1, OPTIONS_.noRand);
 %     randVector = randn(1, OPTIONS_.noRand);
     

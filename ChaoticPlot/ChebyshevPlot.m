@@ -7,9 +7,9 @@ OPTIONS = struct();
 % OPTIONS.x0 = @rand;
 
 for a = OPTIONS_.a
-%     OPTIONS.a = a;
-    randVector = Chebyshev(1, OPTIONS_.noRand, OPTIONS);
-    randVector = mapminmax(randVector);
+    OPTIONS.a = a;
+    randVector = Chebyshev(1, OPTIONS_.noRand, OPTIONS)-Chebyshev(1, OPTIONS_.noRand, OPTIONS);
+%     randVector = mapminmax(randVector);
     %% ploting
     clf
     disp(['Constant a: ', num2str(a), ' Min: ', num2str(min(randVector)), ' Max: ', num2str(max(randVector)) ]);    
@@ -24,7 +24,7 @@ for a = OPTIONS_.a
     title('Chebyshev Chaotic Map Function');
     xlabel('100 Bins');
     ylabel('Number Of Example');
-    pause(0.1);
+    pause(0.5);
 end
 
 end

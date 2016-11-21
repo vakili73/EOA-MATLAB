@@ -1,8 +1,8 @@
 function RandNormPlot
 % This chaotic function is defined by equation below
 OPTIONS_.noRand = 10000;
-randVector = randn(1, OPTIONS_.noRand);
-randVector = mapminmax(randVector);
+randVector = rand(1, OPTIONS_.noRand);%-rand(1, OPTIONS_.noRand);
+% randVector = mapminmax(randVector,0,1);
 
 subplot(1, 2, 1);
 scatter(1 : length(randVector), randVector, '.');

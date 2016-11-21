@@ -5,13 +5,13 @@ OPTIONS_.a = linspace(-10, 10, 100);
 OPTIONS_.b = linspace(-1, 1, 10);
 
 OPTIONS = struct();
-OPTIONS.x0 = @rand;
+% OPTIONS.x0 = @rand;
 
 for a = OPTIONS_.a
-    OPTIONS.a = a;
+%     OPTIONS.a = a;
     for b = OPTIONS_.b
-        OPTIONS.b = b;
-        randVector = GaussMap(1, OPTIONS_.noRand, OPTIONS);
+%         OPTIONS.b = b;
+        randVector = GaussMap(1, OPTIONS_.noRand, OPTIONS)-GaussMap(1, OPTIONS_.noRand, OPTIONS);
         clf
         disp(['Constant a: ', num2str(a), ' --- Constant b:', num2str(b)]);
         subplot(1, 2, 1);
@@ -25,7 +25,7 @@ for a = OPTIONS_.a
         title('GaussMap Chaotic Map Function');
         xlabel('100 Bins');
         ylabel('Number Of Example');
-        pause(0.01);
+        pause(0.5);
     end
 end
 

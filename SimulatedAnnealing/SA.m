@@ -20,13 +20,15 @@ if ~exist('DisplayFlag', 'var') || isempty(DisplayFlag)
 end
 if ~exist('Random', 'var') || isempty(DisplayFlag)
     Random = 'randn()';
+%     Random = 'rand()-rand()';
 end
 if ~exist('GenLimit', 'var') || isempty(GenLimit)
-    GenLimit = 10000;
+    GenLimit = 1000;
 end
 OPTIONS.Maxgen = GenLimit;
 if ~exist('RestartCount', 'var') || isempty(RestartCount)
-    RestartCount = inf;
+%     RestartCount = inf;
+    RestartCount = 5;
 end
 if ~exist('alpha', 'var') || isempty(alpha)
     alpha = 0;
@@ -39,7 +41,7 @@ if ~exist('T0', 'var') || isempty(T0)
 end
 
 % Initialization
-OPTIONS.popsize = 1000;
+OPTIONS.popsize = 50;
 OPTIONS.clearDups = false;
 [OPTIONS, MinCost, AvgCost, Population, MinConstrViol, AvgConstrViol] = ...
     Init(DisplayFlag, ProblemFunction, OPTIONS);
@@ -48,7 +50,7 @@ T = T0;
 TArray = zeros(OPTIONS.Maxgen+1, 1);
 TArray(1) = T;
 ConsecFails = 0; % number of generations with no improvement
-BestSoFar = Population(1); % best individual found so far
+% BestSoFar = Population(1); % best individual found so far
 
 % Begin the optimization loop
 for GenIndex = 1 : OPTIONS.Maxgen
@@ -58,31 +60,42 @@ for GenIndex = 1 : OPTIONS.Maxgen
         T = T / (1 + beta * T);
     end
     % Generate a candidate solution
-    Candidate.chrom = Population(1).chrom + sqrt(T) * eval(RandomInterpreter(Random, '1, OPTIONS.numVar'));
+    Candidate = struct();
+    for i = 1 : length(Population)
+        Candidate(i).chrom = Population(i).chrom + sqrt(T) * eval(RandomInterpreter(Random, '1, OPTIONS.numVar'));
+%         Candidate(i).chrom = OPTIONS.MinDomain + (OPTIONS.MaxDomain - OPTIONS.MinDomain) .* eval(RandomInterpreter(Random, '1, OPTIONS.numVar'));
+        Candidate(i).chrom = max( min( Candidate(i).chrom, OPTIONS.MaxDomain ), OPTIONS.MinDomain );
+    end
+%     Candidate.chrom = Population(1).chrom + sqrt(T) * eval(RandomInterpreter(Random, '1, OPTIONS.numVar'));
 %     Candidate.chrom = Population(1).chrom + sqrt(T) * (Random(1, OPTIONS.numVar) - Random(1, OPTIONS.numVar));
 %     Candidate.chrom = OPTIONS.MinDomain + (OPTIONS.MaxDomain - OPTIONS.MinDomain) .* rand(1,OPTIONS.numVar);
-    Candidate.chrom = max( min( Candidate.chrom, OPTIONS.MaxDomain ), OPTIONS.MinDomain );
+%     Candidate.chrom = max( min( Candidate.chrom, OPTIONS.MaxDomain ), OPTIONS.MinDomain );
     Candidate = OPTIONS.CostFunction(Candidate, OPTIONS);
     % Decide whether to keep the current solution or replace it with the new candidate solution
-    if Candidate.cost < Population(1).cost
-        Population(1) = Candidate;
-        ConsecFails = 0;
-        if Candidate.cost < BestSoFar.cost
-            BestSoFar = Candidate;
-        end
+    Candidate = SortByCost(Candidate);
+    if Candidate(1).cost < Population(1).cost
+        Population = PopAppend(Population, Candidate);
+        Population = SortByCost(Population);
+        Population = PopPick(Population, OPTIONS.popsize);
+%         ConsecFails = 0;
+%         if BestCandidate.cost < BestSoFar.cost
+%             BestSoFar = BestCandidate;
+%         end
     else
         ConsecFails = ConsecFails + 1;
         if ConsecFails > RestartCount
             % Restart
             ConsecFails = 0;
-            Population(1) = BestSoFar;
+%             Population(1) = BestSoFar;
+            T0 = T0/2;
             T = T0;
 %        elseif rand < exp((Population(1).cost - Candidate.cost) / T)
         elseif rand < exp(-1 / T)
-            Population(1) = Candidate;
+            Population(length(Population)) = Candidate(1);
+            Population = SortByCost(Population);
         end
     end
-    DisplayThisTime = DisplayFlag && (mod(GenIndex, 1000) == 0);
+    DisplayThisTime = DisplayFlag && (mod(GenIndex, 100) == 0);
     TArray(GenIndex+1) = T;
     [MinCost, AvgCost, MinConstrViol, AvgConstrViol] = ComputeCostAndConstrViol(Population, ...
         MinCost, AvgCost, MinConstrViol, AvgConstrViol, GenIndex, DisplayThisTime);

@@ -1,7 +1,7 @@
 function [ Rand ] = GaussMap(rows, cols, OPTIONS)
 % Gauss map function is defined by following equation
 OPTIONS_.x0 = @rand;
-a = 4.90;
+a = 8.75;
 b = -0.58;
 if  nargin == 3 && ~isempty(OPTIONS) && isstruct(OPTIONS)
     if isfield(OPTIONS, 'x0'); OPTIONS_.x0 = OPTIONS.x0; end
