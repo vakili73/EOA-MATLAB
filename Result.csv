@@ -1,7 +1,8 @@
-BencFunc, MeanMin, STD, CMFunc 
+BencFunc, MeanMin, STD,CMFunc
 Ackley     ,0.17328,0.42318,Bernoulli-Bernoulli
 Ackley     ,1.0787,0.98426,Chebyshev
 Ackley     ,3.2026,1.2293,Circle
+Ackley     ,0.93416,1.0281,CMFoCSA
 Ackley     ,0.11578,0.35547,Gauss-Gauss
 Ackley     ,0.65157,0.78402,GaussMap-GaussMap
 Ackley     ,0.17328,0.42318,ICMIC-ICMIC
@@ -9,12 +10,14 @@ Ackley     ,1.0193,1.0819,Logistic-Logistic
 Ackley     ,0.3711,0.59061,Piecewise-Piecewise
 Ackley     ,1.0931,1.0186,randn
 Ackley     ,0.40536,0.73383,rand-rand
+Ackley     ,0.39566,0.63357,Singer-Singer
 Ackley     ,1.0546,0.94147,Sinusoidal-Sinusoidal
 Ackley     ,0.82247,0.91877,Sinus-Sinus
 Ackley     ,1.0565,1.0955,Tent-Tent
 Fletcher   ,1310.7851,1690.2431,Bernoulli-Bernoulli
 Fletcher   ,2502.7005,2479.7014,Chebyshev
 Fletcher   ,8887.7505,5500.279,Circle
+Fletcher   ,4200.0474,5357.5237,CMFoCSA
 Fletcher   ,3804.5691,4727.7175,Gauss-Gauss
 Fletcher   ,1538.2989,1677.1996,GaussMap-GaussMap
 Fletcher   ,728.85,847.0862,ICMIC-ICMIC
@@ -22,11 +25,14 @@ Fletcher   ,2350.1511,2729.0173,Logistic-Logistic
 Fletcher   ,1649.626,1720.9751,Piecewise-Piecewise
 Fletcher   ,3224.2993,4524.5728,randn
 Fletcher   ,1209.5853,1036.2772,rand-rand
+Fletcher   ,1958.4936,3993.2379,Singer-Singer
 Fletcher   ,2330.5221,2811.6719,Sinusoidal-Sinusoidal
+Fletcher   ,4135.9157,5652.5313,Sinus-Sinus
 Fletcher   ,5230.0885,5838.1057,Tent-Tent
 Griewank   ,45.3259,22.8649,Bernoulli-Bernoulli
 Griewank   ,8.5026,4.6494,Chebyshev
 Griewank   ,5.3221,8.3317,Circle
+Griewank   ,1.6894,2.4969,CMFoCSA
 Griewank   ,0.19661,0.091377,Gauss-Gauss
 Griewank   ,24.1664,11.1571,GaussMap-GaussMap
 Griewank   ,40.4626,15.5252,ICMIC-ICMIC
@@ -34,11 +40,14 @@ Griewank   ,1.4035,1.361,Logistic-Logistic
 Griewank   ,36.2781,12.8107,Piecewise-Piecewise
 Griewank   ,2.2789,2.2635,randn
 Griewank   ,37.2766,15.2461,rand-rand
+Griewank   ,41.0931,18.4771,Singer-Singer
 Griewank   ,2.2026,2.4834,Sinusoidal-Sinusoidal
+Griewank   ,1.4417,1.3211,Sinus-Sinus
 Griewank   ,0.099668,0.086431,Tent-Tent
 Quartic    ,2.83E-21,9.46E-21,Bernoulli-Bernoulli
 Quartic    ,3.93E-18,1.74E-17,Chebyshev
 Quartic    ,0.0013708,0.0036275,Circle
+Quartic    ,2.57E-19,1.11E-18,CMFoCSA
 Quartic    ,1.23E-15,3.22E-15,Gauss-Gauss
 Quartic    ,5.58E-22,1.26E-21,GaussMap-GaussMap
 Quartic    ,4.84E-22,1.21E-21,ICMIC-ICMIC
@@ -46,10 +55,14 @@ Quartic    ,7.21E-20,2.81E-19,Logistic-Logistic
 Quartic    ,3.89E-20,1.57E-19,Piecewise-Piecewise
 Quartic    ,3.62E-19,1.25E-18,randn
 Quartic    ,7.64E-22,1.61E-21,rand-rand
+Quartic    ,2.76E-18,1.23E-17,Singer-Singer
 Quartic    ,4.73E-20,1.43E-19,Sinusoidal-Sinusoidal
+Quartic    ,2.66E-19,1.09E-18,Sinus-Sinus
+Quartic    ,3.03E-20,1.07E-19,Tent-Tent
 Rastrigin  ,14.6756,5.7914,Bernoulli-Bernoulli
 Rastrigin  ,18.3072,8.5309,Chebyshev
 Rastrigin  ,26.9622,8.8049,Circle
+Rastrigin  ,18.1082,8.4091,CMFoCSA
 Rastrigin  ,12.296,6.3822,Gauss-Gauss
 Rastrigin  ,17.2128,5.3929,GaussMap-GaussMap
 Rastrigin  ,14.0289,7.0198,ICMIC-ICMIC
@@ -57,10 +70,14 @@ Rastrigin  ,17.4117,5.8685,Logistic-Logistic
 Rastrigin  ,13.2329,6.1001,Piecewise-Piecewise
 Rastrigin  ,18.7549,7.968,randn
 Rastrigin  ,12.039,4.495,rand-rand
+Rastrigin  ,12.9842,4.4668,Singer-Singer
 Rastrigin  ,18.5062,6.3536,Sinusoidal-Sinusoidal
+Rastrigin  ,19.0534,7.9614,Sinus-Sinus
+Rastrigin  ,21.0931,9.5192,Tent-Tent
 Rosenbrock ,7.1629,2.615,Bernoulli-Bernoulli
 Rosenbrock ,8.0384,1.0751,Chebyshev
 Rosenbrock ,12.5057,21.1017,Circle
+Rosenbrock ,11.4617,16.2258,CMFoCSA
 Rosenbrock ,9.6522,9.7284,Gauss-Gauss
 Rosenbrock ,8.0624,1.3561,GaussMap-GaussMap
 Rosenbrock ,8.2197,1.4567,ICMIC-ICMIC
@@ -68,10 +85,14 @@ Rosenbrock ,8.2787,1.1944,Logistic-Logistic
 Rosenbrock ,9.1309,6.6861,Piecewise-Piecewise
 Rosenbrock ,8.5561,2.0752,randn
 Rosenbrock ,7.5399,1.9607,rand-rand
+Rosenbrock ,7.5692,1.5131,Singer-Singer
 Rosenbrock ,14.1906,24.2148,Sinusoidal-Sinusoidal
+Rosenbrock ,7.9138,3.393,Sinus-Sinus
+Rosenbrock ,8.9879,6.5968,Tent-Tent
 Schwefel226,1423.3472,340.9592,Bernoulli-Bernoulli
 Schwefel226,1375.1253,383.8603,Chebyshev
 Schwefel226,1069.6798,218.8646,Circle
+Schwefel226,1203.6559,325.814,CMFoCSA
 Schwefel226,549.113,171.0745,Gauss-Gauss
 Schwefel226,1372.5319,327.3082,GaussMap-GaussMap
 Schwefel226,1636.1072,335.9568,ICMIC-ICMIC
@@ -79,10 +100,14 @@ Schwefel226,1370.3563,284.8057,Logistic-Logistic
 Schwefel226,1527.1046,330.0097,Piecewise-Piecewise
 Schwefel226,1294.4862,317.2667,randn
 Schwefel226,1296.6931,371.903,rand-rand
+Schwefel226,1349.4981,408.1943,Singer-Singer
 Schwefel226,1394.6229,372.7845,Sinusoidal-Sinusoidal
+Schwefel226,1404.3931,349.923,Sinus-Sinus
+Schwefel226,1244.667,289.0914,Tent-Tent
 Sphere     ,4.21E-12,3.86E-12,Bernoulli-Bernoulli
 Sphere     ,7.53E-12,5.71E-12,Chebyshev
 Sphere     ,0.17716,0.30209,Circle
+Sphere     ,1.88E-11,1.20E-11,CMFoCSA
 Sphere     ,1.11E-08,1.23E-08,Gauss-Gauss
 Sphere     ,5.04E-12,4.10E-12,GaussMap-GaussMap
 Sphere     ,4.98E-12,4.99E-12,ICMIC-ICMIC
@@ -90,10 +115,14 @@ Sphere     ,1.29E-11,1.82E-11,Logistic-Logistic
 Sphere     ,4.88E-12,5.25E-12,Piecewise-Piecewise
 Sphere     ,1.56E-11,2.01E-11,randn
 Sphere     ,4.60E-12,4.65E-12,rand-rand
+Sphere     ,3.98E-12,4.27E-12,Singer-Singer
 Sphere     ,1.38E-11,1.02E-11,Sinusoidal-Sinusoidal
+Sphere     ,1.87E-11,1.78E-11,Sinus-Sinus
+Sphere     ,4.31E-11,3.59E-11,Tent-Tent
 Step       ,0.9,1.0208,Bernoulli-Bernoulli
 Step       ,1.9,1.2937,Chebyshev
 Step       ,9.35,11.9308,Circle
+Step       ,2.7,1.5927,CMFoCSA
 Step       ,5.4,3.6041,Gauss-Gauss
 Step       ,1.15,0.74516,GaussMap-GaussMap
 Step       ,1.2,1.105,ICMIC-ICMIC
@@ -101,4 +130,7 @@ Step       ,2.9,1.1653,Logistic-Logistic
 Step       ,0.7,0.80131,Piecewise-Piecewise
 Step       ,2.5,1.1002,randn
 Step       ,1.15,0.74516,rand-rand
+Step       ,0.9,0.71818,Singer-Singer
 Step       ,2.3,1.7502,Sinusoidal-Sinusoidal
+Step       ,2.05,1.3563,Sinus-Sinus
+Step       ,3.7,2.0545,Tent-Tent
