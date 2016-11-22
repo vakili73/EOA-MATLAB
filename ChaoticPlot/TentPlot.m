@@ -4,7 +4,7 @@ OPTIONS_.noRand = 10000;
 OPTIONS = struct();
 % OPTIONS.x0 = @rand;
 
-randVector = Tent(1, OPTIONS_.noRand, OPTIONS);
+randVector = Tent(1, OPTIONS_.noRand, OPTIONS)-Tent(1, OPTIONS_.noRand, OPTIONS);
 
 subplot(1, 2, 1);
 scatter(1 : length(randVector), randVector, '.');

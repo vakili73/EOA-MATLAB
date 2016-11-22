@@ -1,7 +1,7 @@
 function [ Rand ] = ICMIC(rows, cols, OPTIONS)
 % where a is a control parameter
 a = 0.85;
-OPTIONS_.x0 = @randn;
+OPTIONS_.x0 = @rand;
 if  nargin == 3 && ~isempty(OPTIONS) && isstruct(OPTIONS)
     if isfield(OPTIONS, 'a'); a = OPTIONS.a; end
     if isfield(OPTIONS, 'x0'); OPTIONS_.x0 = OPTIONS.x0; end

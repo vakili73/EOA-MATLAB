@@ -3,9 +3,9 @@ function SinusPlot
 OPTIONS_.noRand = 10000;
 
 OPTIONS = struct();
-OPTIONS.x0 = @randn;
+% OPTIONS.x0 = @randn;
 
-randVector = Sinus(1, OPTIONS_.noRand, OPTIONS);
+randVector = Sinus(1, OPTIONS_.noRand, OPTIONS)-Sinus(1, OPTIONS_.noRand, OPTIONS);
 
 subplot(1, 2, 1);
 scatter(1 : length(randVector), randVector, '.');

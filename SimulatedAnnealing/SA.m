@@ -1,4 +1,4 @@
-function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartCount, alpha, beta, T0)
+function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartCount, alpha, beta, T0, cross, deriv)
 
 % Simulated annealing for minimizing a continuous function.
 
@@ -23,7 +23,7 @@ if ~exist('Random', 'var') || isempty(DisplayFlag)
 %     Random = 'rand()-rand()';
 end
 if ~exist('GenLimit', 'var') || isempty(GenLimit)
-    GenLimit = 1000;
+    GenLimit = 500;
 end
 OPTIONS.Maxgen = GenLimit;
 if ~exist('RestartCount', 'var') || isempty(RestartCount)
@@ -39,6 +39,12 @@ end
 if ~exist('T0', 'var') || isempty(T0)
     T0 = 100; 
 end
+if ~exist('cross', 'var') || isempty(cross)
+    cross = 0.05; 
+end
+% if ~exist('deriv', 'var') || isempty(deriv)
+%     deriv = 5;
+% end
 
 % Initialization
 OPTIONS.popsize = 50;
@@ -47,6 +53,7 @@ OPTIONS.clearDups = false;
     Init(DisplayFlag, ProblemFunction, OPTIONS);
 
 T = T0;
+% TGama = T0;
 TArray = zeros(OPTIONS.Maxgen+1, 1);
 TArray(1) = T;
 ConsecFails = 0; % number of generations with no improvement
@@ -87,11 +94,26 @@ for GenIndex = 1 : OPTIONS.Maxgen
             % Restart
             ConsecFails = 0;
 %             Population(1) = BestSoFar;
-            T0 = T0/2;
+            T0 = T0*(-psi(1)); %Euler-Mascheroni constant 
             T = T0;
-%        elseif rand < exp((Population(1).cost - Candidate.cost) / T)
+%             if (GenIndex > deriv)
+%                 derivation = diff(MinCost(GenIndex-deriv:GenIndex));
+%                 if abs(sum(derivation)) < eps
+%                     TGama = TGama*0.5;
+%                     T0 = TGama;
+%                 end
+%             end
+%        elseif rand < exp((Population(1).cost - Candidate(1).cost) / T)
         elseif rand < exp(-1 / T)
-            Population(length(Population)) = Candidate(1);
+            j = length(Population);
+            for i = 1:round(cross * length(Candidate))
+                if Population(j).cost > Candidate(i).cost
+                    Population(j) = Candidate(i);
+                    j = j - 1;
+                else
+                    break;
+                end
+            end
             Population = SortByCost(Population);
         end
     end

@@ -11,20 +11,20 @@ Init__;
 
 % chaotic map functions
 Chaotic = {         % Method of generate random function
-    'rand       '   ,'rand()-rand()'        ;
-    'randn      '   ,'randn()'              ;
-    'Bernoulli  '   ,'Bernoulli()-Bernoulli()'          ;
-    'Chebyshev  '   ,'Chebyshev()'          ;
-    'Circle     '   ,'Circle()'             ;
-%     'Gauss      '   ,'Gauss()'              ;
-    'GaussMap   '   ,'GaussMap()-GaussMap()'           ;
-%     'ICMIC      '   ,'ICMIC()'              ;
-%     'Logistic   '   ,'Logistic()'           ;
-%     'Piecewise  '   ,'Piecewise()'          ;
-%     'Singer     '   ,'Singer()'             ;
-%     'Sinus      '   ,'Sinus()'              ;
-%     'Sinusoidal '   ,'Sinusoidal()'         ;
-%     'Tent       '   ,'Tent()'               ;
+    'rand       '   ,'rand()-rand()'            ;
+    'randn      '   ,'randn()'                  ;
+    'Bernoulli  '   ,'Bernoulli()-Bernoulli()' 	;
+    'Chebyshev  '   ,'Chebyshev()'           	;
+    'Circle     '   ,'Circle()'                 ;
+    'Gauss      '   ,'Gauss()-Gauss()'      	;
+    'GaussMap   '   ,'GaussMap()-GaussMap()'  	;
+    'ICMIC      '   ,'ICMIC()-ICMIC()'       	;
+    'Logistic   '   ,'Logistic()-Logistic()'   	;
+    'Piecewise  '   ,'Piecewise()-Piecewise()'  ;
+    'Singer     '   ,'Singer()-Singer()'      	;
+    'Sinus      '   ,'Sinus()-Sinus()'          ;
+    'Sinusoidal '   ,'Sinusoidal()-Sinusoidal()';
+    'Tent       '   ,'Tent()-Tent()'               ;
     'CMFoCSA    '   ,'CMFoCSA()'            };
 nChaotic = size(Chaotic, 1);
 Results = cell(nChaotic, 1);
@@ -52,7 +52,7 @@ function [MeanMin, MeanMinNorm, BestMin, BestMinNorm, STDs] = MonteSA(Random)
 % OUTPUT BestMin is the best solution found by each optimization function
 %        for each benchmark.
 % OUTPUT BestMinNorm is BestMin normalized to a minimum of 1 for each benchmark.
-nMonte = 50; % number of Monte Carlo runs
+nMonte = 20; % number of Monte Carlo runs
 % Benchmark functions
 Bench = [     %     multimodal? separable?  regular?
     'Ackley     '; %     y           n           y
@@ -83,7 +83,7 @@ for j = 1 : nBench
         MinCosts(1,k) = min(Cost);
     end
     STDs(1,j) = std(MinCosts);
-    disp(['BencFunc ', num2str(j), '/', num2str(nBench), ': ',Bench(j,:), ' MeanMin: ', num2str(MeanMin(1,j)), ' STD: ', num2str(STDs(1,j)),' CMFunc : ', Random]);
+    disp(['BencFunc ', num2str(j), '/', num2str(nBench), ': ,',Bench(j,:), ', MeanMin: ,', num2str(MeanMin(1,j)), ', STD: ,', num2str(STDs(1,j)),', CMFunc : ,', Random]);
 end
 % Normalize the results
 if min(MeanMin) == 0

@@ -4,11 +4,11 @@ OPTIONS_.noRand = 10000;
 OPTIONS_.a = linspace(0.9, 1.08, 100);
 
 OPTIONS = struct();
-OPTIONS.x0 = @rand;
+% OPTIONS.x0 = @rand;
 
 for a = OPTIONS_.a
-    OPTIONS.a = a;
-    randVector = Singer(1, OPTIONS_.noRand, OPTIONS);
+%     OPTIONS.a = a;
+    randVector = Singer(1, OPTIONS_.noRand, OPTIONS)-Singer(1, OPTIONS_.noRand, OPTIONS);
     %% ploting
     clf
     disp(['Constant a: ', num2str(a)]);

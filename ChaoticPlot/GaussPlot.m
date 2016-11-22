@@ -5,7 +5,7 @@ OPTIONS_.noRand = 100;
 OPTIONS = struct();
 OPTIONS.x0 = @rand;
 
-randVector = Gauss(1, OPTIONS_.noRand, OPTIONS);
+randVector = Gauss(1, OPTIONS_.noRand, OPTIONS)-Gauss(1, OPTIONS_.noRand, OPTIONS);
 
 subplot(1, 2, 1);
 scatter(1 : length(randVector), randVector, '*');

@@ -4,11 +4,11 @@ OPTIONS_.noRand = 10000;
 OPTIONS_.a = linspace(-1, 1, 100);
 
 OPTIONS = struct();
-OPTIONS.x0 = @randn;
+% OPTIONS.x0 = @randn;
 
 for a = OPTIONS_.a
-    OPTIONS.a = a;
-    randVector = ICMIC(1, OPTIONS_.noRand, OPTIONS);
+%     OPTIONS.a = a;
+    randVector = ICMIC(1, OPTIONS_.noRand, OPTIONS)-ICMIC(1, OPTIONS_.noRand, OPTIONS);
     %% ploting
     clf;
     disp(['Constant a: ', num2str(a)]);

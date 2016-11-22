@@ -4,11 +4,11 @@ OPTIONS_.noRand = 10000;
 OPTIONS_.a = linspace(-5, 5, 1000);
 
 OPTIONS = struct();
-OPTIONS.x0 = @rand;
+% OPTIONS.x0 = @rand;
 
 for a = OPTIONS_.a
-    OPTIONS.a = a;
-    randVector = Sinusoidal(1, OPTIONS_.noRand, OPTIONS);
+%     OPTIONS.a = a;
+    randVector = Sinusoidal(1, OPTIONS_.noRand, OPTIONS)-Sinusoidal(1, OPTIONS_.noRand, OPTIONS);
     %% ploting
     clf
     disp(['Constant a: ', num2str(a)]);
