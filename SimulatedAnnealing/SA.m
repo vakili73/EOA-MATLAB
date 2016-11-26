@@ -1,4 +1,4 @@
-function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartCount, alpha, beta, T0, cross, deriv)
+function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartCount, alpha, beta, T0, cross)
 
 % Simulated annealing for minimizing a continuous function.
 
@@ -13,14 +13,15 @@ function [MinCost] = SA(ProblemFunction, DisplayFlag, Random, GenLimit, RestartC
 % OUTPUT: MinCost = array of best solution, one element for each generation
 
 if ~exist('ProblemFunction', 'var') || isempty(ProblemFunction)
-    ProblemFunction = @Ackley;
+%     ProblemFunction = @Ackley;
+    ProblemFunction = @Rastrigin;
 end
 if ~exist('DisplayFlag', 'var') || isempty(DisplayFlag)
     DisplayFlag = true;
 end
 if ~exist('Random', 'var') || isempty(DisplayFlag)
-    Random = 'randn()';
-%     Random = 'rand()-rand()';
+%     Random = 'randn()';
+    Random = 'rand()-rand()';
 end
 if ~exist('GenLimit', 'var') || isempty(GenLimit)
     GenLimit = 500;
@@ -28,7 +29,7 @@ end
 OPTIONS.Maxgen = GenLimit;
 if ~exist('RestartCount', 'var') || isempty(RestartCount)
 %     RestartCount = inf;
-    RestartCount = 5;
+    RestartCount = 3;
 end
 if ~exist('alpha', 'var') || isempty(alpha)
     alpha = 0;
@@ -36,11 +37,9 @@ end
 if ~exist('beta', 'var') || isempty(beta)
     beta = 0.001;
 end
-if ~exist('T0', 'var') || isempty(T0)
-    T0 = 100; 
-end
 if ~exist('cross', 'var') || isempty(cross)
-    cross = 0.05; 
+    cross = 1; 
+%     cross = 0.50; 
 end
 % if ~exist('deriv', 'var') || isempty(deriv)
 %     deriv = 5;
@@ -51,7 +50,11 @@ OPTIONS.popsize = 50;
 OPTIONS.clearDups = false;
 [OPTIONS, MinCost, AvgCost, Population, MinConstrViol, AvgConstrViol] = ...
     Init(DisplayFlag, ProblemFunction, OPTIONS);
-
+if ~exist('T0', 'var') || isempty(T0)
+%     T0 = 100; 
+    Bound = OPTIONS.MaxDomain(1) - OPTIONS.MinDomain(1);
+    T0 = (4 * Bound^4)/(1 + sqrt(OPTIONS.popsize))^4; 
+end
 T = T0;
 % TGama = T0;
 TArray = zeros(OPTIONS.Maxgen+1, 1);
@@ -94,7 +97,7 @@ for GenIndex = 1 : OPTIONS.Maxgen
             % Restart
             ConsecFails = 0;
 %             Population(1) = BestSoFar;
-            T0 = T0*(-psi(1)); %Euler-Mascheroni constant 
+            T0 = T0/2; %Euler-Mascheroni constant 
             T = T0;
 %             if (GenIndex > deriv)
 %                 derivation = diff(MinCost(GenIndex-deriv:GenIndex));
@@ -105,6 +108,7 @@ for GenIndex = 1 : OPTIONS.Maxgen
 %             end
 %        elseif rand < exp((Population(1).cost - Candidate(1).cost) / T)
         elseif rand < exp(-1 / T)
+%         else
             j = length(Population);
             for i = 1:round(cross * length(Candidate))
                 if Population(j).cost > Candidate(i).cost
